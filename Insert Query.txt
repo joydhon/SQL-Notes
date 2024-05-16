@@ -1,0 +1,48 @@
+Insert Into Cust_schema (Cust_name, Cust_st, Cust_city)
+values
+	  ('Adams', 'Spring', 'Pittsfield'),
+      ('Brooks', 'Senator', 'Brooklyn'),
+	  ('Curry', 'North', 'Rye'),
+      ('Gleen', 'Sand Hill','Woodside'),
+      ('Green', 'Walnut', 'Stamford'),
+      ('Hayes', 'Main', 'Harrison'),
+      ('Johnson','Alma', 'Palo Alto'),
+      ('Jones','Main','Harrison'), 
+      ('Lindsay', 'Park', 'Pittsfield'),
+      ('Smith', ' North', 'Rye'),
+      ('Turner', 'Putnam', 'Stamford'),
+      ('Williams', 'Nassau', 'Princeton');
+      
+      
+      Insert Into loan_schema (loa_num, bra_name, amount)
+values
+	  ('L-11', 'Round Hill', 900),
+      ('L-14', 'Downtown', 1500),
+	  ('L-15', 'Perryridge', 1500),
+      ('L-16', 'Perryridge', 1300),
+      ('L-17', 'Downtown', 1000),
+      ('L-23', 'Redwood', 2000),
+      ('L-93','Mianus', 500);
+      
+      
+    Insert Into Dep_schema (Cu_name, Acc_num)
+values
+	  ('Hayes', 'A-102'),
+      ('Johnson', 'A-101'),
+	  ('Johnson', 'A-201'),
+      ('Jones', 'A-217'),
+      ('Lindsay', 'A-222'),
+      ('Smith', 'A-215'),
+      ('Turner','A-305');
+      
+      
+      Insert Into Borrower_schema (Cust_name, loa_num)
+values
+	  ('Adams', 'L-16'),
+      ('Curry', 'L-93'),
+	  ('Hayes', 'L-15'),
+      ('Jackson', 'L-14'),
+      ('Jones', 'L-17'),
+      ('Smith', 'L-11'),
+      ('Smith','L-23'),
+      ('Williams','L-17');
