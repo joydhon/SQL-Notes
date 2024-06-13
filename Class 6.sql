@@ -4,7 +4,7 @@ USE banking_interprise;
 
 -- Account Schema
 CREATE TABLE Account_Schema(
-	Acc_Sch_id int auto_increment,
+	Acc_Sch_id int auto_increment not null,
     account_no varchar(10),
     branch_name varchar(25),
     balance int,
@@ -265,3 +265,79 @@ SELECT branch_name FROM Account_Schema UNION ALL SELECT branch_name FROM branch_
 SELECT branch_name FROM Account_Schema 
 UNION ALL 
 SELECT branch_name FROM branch_Schema;
+
+
+
+SELECT * from branch_schema;
+SELECT * from loan_schema;
+
+-- Find out the branch city and assets from the branch cities that matches both tables cities.
+SELECT branch_schema.branch_city, branch_schema.assets
+FROM loan_schema
+LEFT JOIN branch_schema
+ON
+loan_schema.branch_name = branch_schema.branch_name;
+
+SELECT branch_schema.branch_city, branch_schema.assets
+FROM loan_schema
+Right JOIN branch_schema
+ON
+loan_schema.branch_name = branch_schema.branch_name;
+
+SELECT branch_schema.branch_city, branch_schema.assets
+FROM loan_schema
+FULL JOIN branch_schema
+ON
+loan_schema.branch_name = branch_schema.branch_name;
+
+SELECT branch_schema.branch_city, branch_schema.assets, loan_schema.amount
+FROM branch_schema
+Full JOIN loan_schema
+ON
+branch_schema.branch_name = loan_schema.branch_name
+ORDER BY branch_schema.branch_name;
+
+-- Full Outer Join / Full Join Alternative
+SELECT branch_schema.branch_city AS BC, branch_schema.assets, loan_schema.amount
+FROM branch_schema
+LEFT JOIN loan_schema ON branch_schema.branch_name = loan_schema.branch_name
+UNION
+SELECT branch_schema.branch_city AS BC, branch_schema.assets, loan_schema.amount
+FROM branch_schema
+Right JOIN loan_schema ON branch_schema.branch_name = loan_schema.branch_name;
+
+
+CREATE TABLE Orders(
+OrderID int Not NULL,
+OrderNumber int Not Null,
+OrderQuantity int,
+primary key (OrderID)
+);
+
+CREATE TABLE Customers(
+CustID int NOT NULL,
+Customer_name Varchar(20),
+OrderID int,
+CONSTRAINT FK_Orders
+FOREIGN KEY (OrderID)
+REFERENCES Orders(OrderID)
+);
+
+INSERT INTO Orders (OrderID, OrderNumber, OrderQuantity) VALUES (1, 1001, 10);
+INSERT INTO Orders (OrderID, OrderNumber, OrderQuantity) VALUES (2, 1002, 20);
+
+Select * from Orders;
+
+
+INSERT INTO Customers (CustID, Customer_name, OrderID)
+VALUES (1, 'John Doe', (SELECT OrderID FROM Orders WHERE OrderID = 1));
+
+INSERT INTO Customers (CustID, Customer_name, OrderID)
+VALUES (2, 'Jane Smith', (SELECT OrderID FROM Orders WHERE OrderID = 2));
+
+SELECT * from Customers;
+
+SELECT Orders.OrderID AS Orders_OrderID, Orders.OrderNumber, Orders.OrderQuantity
+From Orders
+LEFT JOIN Customers
+ON Orders.OrderID = Customers.OrderID;
